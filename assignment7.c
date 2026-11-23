@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+struct Student {
+    int roll;
+    char name[30];
+    int marks[3];
+    int total;
+    float percentage;
+};
+
+int main() {
+    struct Student s[50];
+    int n, i, j;
+
+    printf("Enter the number of students: ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        printf("\nStudent %d\n", i + 1);
+
+        printf("Enter roll number: ");
+        scanf("%d", &s[i].roll);
+
+        printf("Enter name: ");
+        scanf("%s", s[i].name);
+
+        s[i].total = 0;
+        for (j = 0; j < 3; j++) {
+            printf("Enter marks of subject %d: ", j + 1);
+            scanf("%d", &s[i].marks[j]);
+            s[i].total = s[i].total + s[i].marks[j];
+        }
+
+        s[i].percentage = s[i].total / 3.0;
+    }
+
+    printf("\nRoll No\tName\tSub1\tSub2\tSub3\tTotal\tPercentage\n");
+    for (i = 0; i < n; i++) {
+        printf("%d\t%s\t%d\t%d\t%d\t%d\t%.2f\n",
+               s[i].roll, s[i].name,
+               s[i].marks[0], s[i].marks[1], s[i].marks[2],
+               s[i].total, s[i].percentage);
+    }
+
+    return 0;
+}
